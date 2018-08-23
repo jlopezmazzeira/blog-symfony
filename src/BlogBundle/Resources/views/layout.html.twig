@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<title>
+			{% block title %} Blog con Symfony 3 {% endblock %}
+		</title>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <div class="navbar-header">
+				      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        	<span class="sr-only">Toggle navigation</span>
+				        	<span class="icon-bar"></span>
+				        	<span class="icon-bar"></span>
+				        	<span class="icon-bar"></span>
+				      	</button>
+				      	<a class="navbar-brand" href="{{path("blog_homepage")}}">Blog Symfony 3!!</a>
+				    </div>
+
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      	<ul class="nav navbar-nav">
+				      		{% block menu %}
+				        		<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+				        		<li><a href="#">Link</a></li>
+				        	{% endblock %}
+				      	</ul>
+				      	<ul class="nav navbar-nav navbar-right">
+				      		<li>
+				      			<a href="#">
+					      			{% if app.user != null %}
+										Bienvenido, {{ app.user.name }} {{ app.user.surname }}
+					      			{% endif %}
+					      		</a>
+				      		</li>
+				        	<li class="dropdown">
+					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
+					          	<ul class="dropdown-menu">
+					          		{% if app.user == null %}
+					            		<li><a href="{{path("login")}}">Entrar</a></li>
+					            	{% else %}
+										<li><a href="{{path("blog_add_entry")}}">Añadir Entrada</a></li>
+										<li><a href="{{path("blog_index_tag")}}">Etiquetas</a></li>
+										<li><a href="{{path("blog_index_category")}}">Categorias</a></li>
+					            		<li role="separator" class="divider"></li>
+					            		<li><a href="{{path("logout")}}">Salir</a></li>
+					            	{% endif %}
+					            	<li><a href="#">Ayuda</a></li>
+					          	</ul>
+				        	</li>
+				      	</ul>
+				    </div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+		</header>
+		<section id="content">
+			{% block content %} Contenido default {% endblock %}
+		</section>
+		<footer>
+			Curso de Symfony - Victor Robles &copy;
+		</footer>
+	</body>
+</html>

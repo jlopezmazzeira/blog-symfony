@@ -1,0 +1,65 @@
+login:
+    path: /login
+    defaults: { _controller: BlogBundle:User:login }
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+blog_homepage:
+    path:     /home/{page}
+    defaults: { _controller: BlogBundle:Entry:index, page:1 }
+
+blog_index_tag:
+    path:     /tags
+    defaults: { _controller: BlogBundle:Tag:index }
+
+blog_add_tag:
+    path:     /tags/add
+    defaults: { _controller: BlogBundle:Tag:add }
+
+blog_delete_tag:
+    path:     /tags/delete/{id}
+    defaults: { _controller: BlogBundle:Tag:delete }
+
+blog_index_category:
+    path:     /categories
+    defaults: { _controller: BlogBundle:Category:index }
+
+blog_add_category:
+    path:     /categories/add
+    defaults: { _controller: BlogBundle:Category:add }
+
+blog_edit_category:
+    path:     /categories/edit/{id}
+    defaults: { _controller: BlogBundle:Category:edit }
+
+blog_delete_category:
+    path:     /categories/delete/{id}
+    defaults: { _controller: BlogBundle:Category:delete }
+
+blog_read_category:
+    path:     /category/{id}/{page}
+    defaults: { _controller: BlogBundle:Category:category, page:1 }
+
+blog_index_entry:
+    path:     /entries
+    defaults: { _controller: BlogBundle:Entry:index }
+
+blog_add_entry:
+    path:     /entries/add
+    defaults: { _controller: BlogBundle:Entry:add }
+
+blog_edit_entry:
+    path:     /entries/edit/{id}
+    defaults: { _controller: BlogBundle:Entry:edit }
+
+blog_delete_entry:
+    path:     /entries/delete/{id}
+    defaults: { _controller: BlogBundle:Entry:delete }
+
+blog_lang:
+    path:     /lang/{_locale}
+    defaults: { _controller: BlogBundle:Default:lang }
